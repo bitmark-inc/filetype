@@ -17,6 +17,7 @@ var (
 	TypeHeif     = newType("heif", "image/heif")
 	TypeDwg      = newType("dwg", "image/vnd.dwg")
 	TypeExr      = newType("exr", "image/x-exr")
+	TypeSvg      = newType("svg", "image/svg+xml")
 )
 
 var Image = Map{
@@ -34,6 +35,7 @@ var Image = Map{
 	TypeHeif:     Heif,
 	TypeDwg:      Dwg,
 	TypeExr:      Exr,
+	TypeSvg:      Svg,
 }
 
 func Jpeg(buf []byte) bool {
@@ -148,4 +150,18 @@ func Exr(buf []byte) bool {
 	return len(buf) > 3 &&
 		buf[0] == 0x76 && buf[1] == 0x2f &&
 		buf[2] == 0x31 && buf[3] == 0x01
+}
+
+func Svg(buf []byte) bool {
+	return len(buf) > 19 &&
+		buf[0] == 0x3c && buf[1] == 0x3f &&
+		buf[2] == 0x78 && buf[3] == 0x6d &&
+		buf[4] == 0x6c && buf[5] == 0x20 &&
+		buf[6] == 0x76 && buf[7] == 0x65 &&
+		buf[8] == 0x72 && buf[9] == 0x73 &&
+		buf[10] == 0x69 && buf[11] == 0x6f &&
+		buf[12] == 0x6e && buf[13] == 0x3d &&
+		buf[14] == 0x22 && buf[15] == 0x31 &&
+		buf[16] == 0x2e && buf[17] == 0x30 &&
+		buf[18] == 0x22 && buf[19] == 0x20
 }
