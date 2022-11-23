@@ -252,6 +252,7 @@ func main() {
 - **rpm** - `application/x-rpm`
 - **elf** - `application/x-executable`
 - **dcm** - `application/dicom`
+- **m3u8** - `application/x-mpegURL`
 
 #### Documents
 
